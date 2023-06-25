@@ -6,10 +6,10 @@
         "components/*"
       ],
       "@/foundation/*": [
-        "foundation/*"
+        "lib/foundation/*"
       ],
       "@/utils/*": [
-        "utils/*"
+        "lib/utils/*"
       ],
       "@/types/*": [
         "types/*"
