@@ -1,0 +1,4 @@
+.menuHeaderTransition {
+  view-transition-name: menu-header-transition;
+  contain: paint;
+}
