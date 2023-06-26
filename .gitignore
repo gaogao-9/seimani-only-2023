@@ -108,4 +108,4 @@ dist
 temp
 
 # image of top
-public/top/*.png
+public/assets/img/top.png

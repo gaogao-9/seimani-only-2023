@@ -1,4 +1,29 @@
 .menuHeaderTransition {
-  view-transition-name: menu-header-transition;
   contain: paint;
+
+  &.map {
+    view-transition-name: menu-header-map-transition;
+  }
+
+  &.common {
+    view-transition-name: menu-header-common-transition;
+  }
+}
+
+::view-transition-group(menu-header-map-transition) {
+  animation-duration: 0.6s;
+  animation-timing-function: ease;
+}
+
+::view-transition-old(menu-header-map-transition) {
+  animation-duration: 0s;
+}
+
+::view-transition-group(menu-header-common-transition) {
+  animation-duration: 0.6s;
+  animation-timing-function: ease;
+}
+
+::view-transition-old(menu-header-common-transition) {
+  animation-duration: 0s;
 }

@@ -1,10 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import styled from "@emotion/styled";
 import { Center } from "@chakra-ui/layout";
 import { routes } from "@/foundation/route";
+import { createNavigationCallback } from "@/utils/createNavigationCallback";
 
 const Wrapper = styled.div`
   min-height: 100%;
@@ -38,7 +40,8 @@ const StyledLink = styled.span`
     transition: transform 0.3s;
   }
 
-  &:hover::after {
+  &:hover::after,
+  &[data-selected]::after {
     transform: translateX(calc(-50% + 2.5px)) scaleX(1);
   }
 
@@ -54,9 +57,20 @@ const StyledLink = styled.span`
 
 export const RoutingMenu: React.FC = () => {
   const [currentPathName, setCurrentPathName] = useState<string | null>(null);
+  const router = useRouter();
+  const navigationCallback = useMemo(
+    () => createNavigationCallback(router.push),
+    [router.push],
+  );
+  const onNavigateToContents = useMemo(
+    () => navigationCallback(),
+    [navigationCallback],
+  );
+
   useEffect(() => {
     setCurrentPathName(window.location.pathname);
   }, []);
+
   return (
     <Wrapper>
       <List>
@@ -66,16 +80,24 @@ export const RoutingMenu: React.FC = () => {
           return (
             <ListItem key={route.title}>
               <Center my={4} as="span">
-                <Link href={route.pathname}>
-                  <StyledLink
-                    aria-disabled={
-                      isSamePathname || (undefined as unknown as boolean)
-                    }
-                    tabIndex={isSamePathname ? -1 : 0}
-                  >
-                    {route.title}
+                {isSamePathname ? (
+                  <StyledLink data-selected>
+                    <span>{route.title}</span>
                   </StyledLink>
-                </Link>
+                ) : (
+                  <Link
+                    href={route.pathname}
+                    onClick={
+                      route.name !== "top" ? onNavigateToContents : undefined
+                    }
+                  >
+                    <StyledLink>
+                      <span className={`menuHeaderTransition ${route.name}`}>
+                        {route.title}
+                      </span>
+                    </StyledLink>
+                  </Link>
+                )}
               </Center>
             </ListItem>
           );

@@ -5,6 +5,7 @@ import { TwoWayLayout as Layout } from "@/components/TwoWayLayout";
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import Image from "next/image";
+import { useCallback, useState } from "react";
 
 const animationStartDelay = 0.5;
 const imageSize = {
@@ -24,13 +25,18 @@ const CharaInAnimation = keyframes`
   }
 `;
 
-const CharaImage = styled(Image)`
+const CharaImage = styled(Image)<{ playstate: "running" | "paused" }>`
   animation: 0.5s ease ${animationStartDelay}s 1 running both
     ${CharaInAnimation};
+  animation-play-state: ${({ playstate }) => playstate};
   transform-origin: center bottom;
 `;
 
 const Page: React.FC = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const onCharaImageLoad = useCallback(() => {
+    setIsLoaded(true);
+  }, []);
   return (
     <Layout>
       <ResponsiveImage
@@ -46,10 +52,13 @@ const Page: React.FC = () => {
         minimumWidthThretholdRate={50 / 100}
       >
         <CharaImage
-          src="/top/top.png"
+          playstate={isLoaded ? "running" : "paused"}
+          src="/assets/img/top.png"
           width={imageSize.w}
           height={imageSize.h}
+          loading="eager"
           alt="カルチェとジーンのツーショット"
+          onLoad={onCharaImageLoad}
         />
       </ResponsiveImage>
     </Layout>
