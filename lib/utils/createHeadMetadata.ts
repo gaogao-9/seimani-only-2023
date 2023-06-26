@@ -13,6 +13,7 @@ export const createHeadMetadata = (pathname: string): Metadata => {
 
   return {
     title: fullTitle,
+    metadataBase: new URL(origin),
     openGraph: {
       type: "website",
       locale: "ja_JP",
@@ -22,7 +23,7 @@ export const createHeadMetadata = (pathname: string): Metadata => {
       images: ogpImage,
     },
     alternates: {
-      canonical: `${origin}${pathname}`,
+      canonical: `${pathname}`,
     },
   };
 };
