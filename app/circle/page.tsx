@@ -163,7 +163,7 @@ const Page: React.FC = () => {
             ・イス1脚
             <br />
             ・入場証
-            <Text as="span" fontWeight="700">
+            <Text as="span" fontWeight="400">
               1枚
             </Text>
             <br />
@@ -183,7 +183,7 @@ const Page: React.FC = () => {
             ・イス2脚
             <br />
             ・入場証
-            <Text as="span" fontWeight="700">
+            <Text as="span" fontWeight="400">
               2枚
             </Text>
             <br />

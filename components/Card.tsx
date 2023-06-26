@@ -106,7 +106,7 @@ const CardSection: React.FC<CardProps> = ({ title, children, ...props }) => {
           as="div"
           fontSize="lg"
           fontFamily={`"Noto Sans JP", sans-serif`}
-          fontWeight="200"
+          fontWeight="300"
           color="blue.800"
           lineHeight={1.75}
         >
@@ -150,7 +150,7 @@ const CardContents: React.FC<CardProps> = ({ title, children, ...props }) => {
           as="div"
           fontSize="lg"
           fontFamily={`"Noto Sans JP", sans-serif`}
-          fontWeight="200"
+          fontWeight="300"
           color="blue.800"
           lineHeight={1.75}
         >
@@ -170,7 +170,7 @@ const CardContentsTitle: React.FC<CardContentsTitleProps> = ({
       as="p"
       fontSize="xl"
       fontFamily={`"Noto Sans JP", sans-serif`}
-      fontWeight="200"
+      fontWeight="300"
       color="orange.500"
       {...(props as {})}
     >

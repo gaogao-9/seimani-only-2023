@@ -2,6 +2,7 @@
 
 import { Providers } from "./providers";
 import "./global.css";
+import { GlobalStyle } from "./GlobalStyle";
 
 export default function RootLayout({
   children,
@@ -9,13 +10,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ja">
-      <head>
-        <meta name="view-transition" content="same-origin" />
-      </head>
-      <body>
-        <Providers>{children}</Providers>
-      </body>
-    </html>
+    <>
+      <html lang="ja">
+        <head>
+          <meta name="view-transition" content="same-origin" />
+        </head>
+        <body>
+          <Providers>{children}</Providers>
+        </body>
+      </html>
+      <GlobalStyle />
+    </>
   );
 }

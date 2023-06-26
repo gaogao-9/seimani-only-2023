@@ -25,7 +25,7 @@ const StyledLink = styled.span`
   font-size: var(--chakra-fontSizes-lg);
   text-decoration: none;
   color: var(--chakra-colors-orange-400);
-  font-family: "Hachi Maru Pop", cursive;
+  font-family: "Kaisei Opti", cursive;
 
   &::after {
     position: absolute;

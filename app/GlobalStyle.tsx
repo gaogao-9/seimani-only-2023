@@ -6,11 +6,11 @@ const routesText = encodeURIComponent(
 );
 
 const routingMenuFont = css`
-  @import url("https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop:wght@400&display=swap&text=${routesText}");
+  @import url("https://fonts.googleapis.com/css2?family=Kaisei+Opti:wght@400&display=swap&text=${routesText}");
 `;
 
 const BodyTextFont = css`
-  @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@200;300;500&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;500&display=swap");
 `;
 
 export const GlobalStyle: React.FC = () => {

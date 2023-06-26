@@ -129,7 +129,7 @@ const Page: React.FC = () => {
                   <ListIcon
                     verticalAlign="middle"
                     as={FaTrain}
-                    color="red.500"
+                    color="cyan.500"
                   />
                   <span style={{ verticalAlign: "middle" }}>
                     都営三田線 新板橋駅 徒歩3分
@@ -139,7 +139,7 @@ const Page: React.FC = () => {
                   <ListIcon
                     verticalAlign="middle"
                     as={FaTrain}
-                    color="red.500"
+                    color="orange.500"
                   />
                   <span style={{ verticalAlign: "middle" }}>
                     東武東上線 下板橋駅 徒歩7分

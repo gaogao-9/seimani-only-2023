@@ -132,13 +132,13 @@ const Page: React.FC = () => {
             ・エアガン他、素材が固く、人に当たると危害をあたえるおそれのあるものの持ち込みは禁止です。
             <Card.Contents title="">
               持ち込み
-              <Text as="span" fontWeight="700">
+              <Text as="span" fontWeight="400">
                 不可
               </Text>
               な素材例：金属等硬質で尖っているあるいは切断面が鋭利なもの
               <br />
               持ち込み
-              <Text as="span" fontWeight="700">
+              <Text as="span" fontWeight="400">
                 可能
               </Text>
               な素材例：ダンボール・ウレタン（ライオンボード）／紙・柔らかい粘土（乾燥しても過度に固くならないもの）／キャスト・プラ板・プラスチックダンボールなどのプラスチック
