@@ -3,6 +3,7 @@
 import { Providers } from "./providers";
 import "./global.css";
 import { GlobalStyle } from "./GlobalStyle";
+import { Head } from "./Head";
 
 export default function RootLayout({
   children,
@@ -13,7 +14,7 @@ export default function RootLayout({
     <>
       <html lang="ja">
         <head>
-          <meta name="view-transition" content="same-origin" />
+          <Head />
         </head>
         <body>
           <Providers>{children}</Providers>

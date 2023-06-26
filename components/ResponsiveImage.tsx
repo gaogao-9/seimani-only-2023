@@ -1,3 +1,5 @@
+"use client";
+
 import { CSSProperties, useEffect, useMemo, useRef, useState } from "react";
 import styled from "@emotion/styled";
 
