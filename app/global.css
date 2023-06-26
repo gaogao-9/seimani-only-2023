@@ -16,6 +16,10 @@
   &.cosplay {
     view-transition-name: menu-header-cosplay-transition;
   }
+
+  &.staff {
+    view-transition-name: menu-header-staff-transition;
+  }
 }
 
 ::view-transition-group(menu-header-map-transition) {
@@ -51,5 +55,14 @@
 }
 
 ::view-transition-old(menu-header-cosplay-transition) {
+  animation-duration: 0s;
+}
+
+::view-transition-group(menu-header-staff-transition) {
+  animation-duration: 0.6s;
+  animation-timing-function: ease;
+}
+
+::view-transition-old(menu-header-staff-transition) {
   animation-duration: 0s;
 }
