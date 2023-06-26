@@ -30,6 +30,7 @@ export const routes: Array<Route> = [
     name: "cosplay",
     pathname: "/cosplay",
   },
+  /*
   {
     title: "イベント情報",
     name: "event",
@@ -40,6 +41,7 @@ export const routes: Array<Route> = [
     name: "infection",
     pathname: "/infection",
   },
+  */
   {
     title: "スタッフ一覧",
     name: "staff",

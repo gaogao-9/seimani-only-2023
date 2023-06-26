@@ -8,6 +8,14 @@
   &.common {
     view-transition-name: menu-header-common-transition;
   }
+
+  &.circle {
+    view-transition-name: menu-header-circle-transition;
+  }
+
+  &.cosplay {
+    view-transition-name: menu-header-cosplay-transition;
+  }
 }
 
 ::view-transition-group(menu-header-map-transition) {
@@ -25,5 +33,23 @@
 }
 
 ::view-transition-old(menu-header-common-transition) {
+  animation-duration: 0s;
+}
+
+::view-transition-group(menu-header-circle-transition) {
+  animation-duration: 0.6s;
+  animation-timing-function: ease;
+}
+
+::view-transition-old(menu-header-circle-transition) {
+  animation-duration: 0s;
+}
+
+::view-transition-group(menu-header-cosplay-transition) {
+  animation-duration: 0.6s;
+  animation-timing-function: ease;
+}
+
+::view-transition-old(menu-header-cosplay-transition) {
   animation-duration: 0s;
 }
