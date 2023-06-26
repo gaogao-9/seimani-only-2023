@@ -1,10 +1,14 @@
 "use client";
 
-import NextHead from "next/head";
 import { routes } from "@/foundation/route";
+import { Metadata } from "next";
 
-export const Head: React.FC = (props) => {
-  const route = routes.find((x) => x.pathname === window.location.pathname);
+export type HeadProps = {
+  pathname: string;
+};
+
+export const Head: React.FC<HeadProps> = ({ pathname }) => {
+  const route = routes.find((x) => x.pathname === pathname);
   const title =
     "政剣マニフェスティアオンリー同人誌即売会 緊急交流イベント 漕ぎ出せ！ソクバイ海Ⅵ";
   const subTitle = route?.pathname === "/top" ? "" : route?.title ?? "";
@@ -16,13 +20,6 @@ export const Head: React.FC = (props) => {
   return (
     <>
       <title key="title">{fullTitle}</title>
-      <meta
-        name="viewport"
-        content="initial-scale=1.0, width=device-width"
-        key="viewport"
-      />
-      <meta name="google" content="notranslate" />
-      <meta name="view-transition" content="same-origin" />
       <meta property="og:type" content="website" />
       <meta property="og:locale" content="ja_JP" />
       <meta property="og:title" content={fullTitle} />
@@ -30,8 +27,7 @@ export const Head: React.FC = (props) => {
       <meta property="og:description" content={description} />
       <meta property="og:image" content={ogpImage} />
       <meta name="twitter:card" content="summary" />
-      <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-      <link rel="canonical" href={`${origin}${window.location.pathname}`} />
+      <link rel="canonical" href={`${origin}${pathname}`} />
     </>
   );
 };

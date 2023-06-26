@@ -1,16 +1,10 @@
-"use client";
+import PageClient from "./page.client";
+import { createHeadMetadata } from "@/utils/createHeadMetadata";
 
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+export default function Page() {
+  return <PageClient />;
+}
 
-const Page: React.FC = () => {
-  const router = useRouter();
-
-  useEffect(() => {
-    router.replace("/top");
-  }, [router]);
-
-  return <></>;
+export const metadata = {
+  ...createHeadMetadata("/"),
 };
-
-export default Page;

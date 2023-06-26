@@ -3,7 +3,6 @@
 import { Providers } from "./providers";
 import "./global.css";
 import { GlobalStyle } from "./GlobalStyle";
-import { Head } from "./Head";
 
 export default function RootLayout({
   children,
@@ -14,7 +13,13 @@ export default function RootLayout({
     <>
       <html lang="ja">
         <head>
-          <Head />
+          <meta key="googletranslate" name="google" content="notranslate" />
+          <meta
+            key="viewtransition"
+            name="view-transition"
+            content="same-origin"
+          />
+          <link key="icon" rel="icon" type="image/x-icon" href="/favicon.ico" />
         </head>
         <body>
           <Providers>{children}</Providers>

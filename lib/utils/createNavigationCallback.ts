@@ -14,8 +14,6 @@ export const createNavigationCallback =
 
     window.sessionStorage.setItem("navigationStatus", "navigationStart");
 
-    console.log("it");
-
     startViewTransition(async () => {
       onClick?.();
       window.sessionStorage.setItem("navigationStatus", "navigating");
