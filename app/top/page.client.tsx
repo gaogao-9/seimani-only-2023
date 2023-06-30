@@ -32,6 +32,53 @@ const BackgroundInAnimation = keyframes`
   }
 `;
 
+const RightSlideInAnimation = keyframes`
+  0% {
+    transform: translateX(120%) rotateZ(0deg);
+  }
+  50% {
+    transform: translateX(0%)  rotateZ(-30deg);
+  }
+  100% {
+    transform: translateX(0%) scale(1, 1);
+  }
+`;
+
+const LeftSlideInAnimation = keyframes`
+  0% {
+    transform: translateX(-120%) rotateZ(0deg);
+  }
+  50% {
+    transform: translateX(0%)  rotateZ(30deg);
+  }
+  100% {
+    transform: translateX(0%) scale(1, 1);
+  }
+`;
+
+const MoveAnimation = keyframes`
+  0% {
+    transform: translateY(0%);
+    animation-timing-function: ease-out;
+  }
+  25% {
+    transform: translateY(-1%);
+    animation-timing-function: ease-in;
+  }
+  50% {
+    transform: translateY(0%);
+    animation-timing-function: linear;
+  }
+  75% {
+    transform: translateY(1%);
+    animation-timing-function: ease-in;
+  }
+  100% {
+    transform: translateY(0%);
+    animation-timing-function: ease-out;
+  }
+`;
+
 const ImageWrapper = styled.div<{
   width: number;
   height: number;
@@ -49,6 +96,28 @@ const ImageWrapper = styled.div<{
 
 const BackgroundImageWrapper = styled(ImageWrapper)`
   animation: 0.5s ease ${animationStartDelay + 0.1}s 1 running both
+    ${BackgroundInAnimation};
+  transform-origin: center bottom;
+`;
+
+const CartierImageWrapper = styled(ImageWrapper)`
+  animation: 0.8s ease ${animationStartDelay + 1}s 1 running both
+      ${RightSlideInAnimation},
+    6s ease ${animationStartDelay + 2}s infinite running forwards
+      ${MoveAnimation};
+  transform-origin: center bottom;
+`;
+
+const JeaneImageWrapper = styled(ImageWrapper)`
+  animation: 0.8s ease ${animationStartDelay + 1.2}s 1 running both
+      ${LeftSlideInAnimation},
+    6s ease ${animationStartDelay + 2}s infinite running forwards reverse
+      ${MoveAnimation};
+  transform-origin: center bottom;
+`;
+
+const EffectImageWrapper = styled(ImageWrapper)`
+  animation: 0.5s ease ${animationStartDelay + 1.7}s 1 running both
     ${BackgroundInAnimation};
   transform-origin: center bottom;
 `;
@@ -117,6 +186,42 @@ const Page: React.FC = () => {
             alt="背景画像"
           />
         </BackgroundImageWrapper>
+        <CartierImageWrapper width={imageSize.w} height={imageSize.h}>
+          <Image
+            src={
+              isMobileMac() || isSmallSize()
+                ? topImageContext.images["cartier_m.png"]
+                : topImageContext.images["cartier.png"]
+            }
+            width={imageSize.w}
+            height={imageSize.h}
+            alt="背景画像"
+          />
+        </CartierImageWrapper>
+        <JeaneImageWrapper width={imageSize.w} height={imageSize.h}>
+          <Image
+            src={
+              isMobileMac() || isSmallSize()
+                ? topImageContext.images["jeane_m.png"]
+                : topImageContext.images["jeane.png"]
+            }
+            width={imageSize.w}
+            height={imageSize.h}
+            alt="背景画像"
+          />
+        </JeaneImageWrapper>
+        <EffectImageWrapper width={imageSize.w} height={imageSize.h}>
+          <Image
+            src={
+              isMobileMac() || isSmallSize()
+                ? topImageContext.images["effect_m.png"]
+                : topImageContext.images["effect.png"]
+            }
+            width={imageSize.w}
+            height={imageSize.h}
+            alt="背景画像"
+          />
+        </EffectImageWrapper>
       </ResponsiveImage>
     </>
   );
