@@ -2,16 +2,7 @@
 
 import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
-import {
-  Text,
-  Button,
-  Flex,
-  Table,
-  Tbody,
-  Td,
-  Tr,
-  keyframes,
-} from "@chakra-ui/react";
+import { Text, Flex, keyframes } from "@chakra-ui/react";
 import { Card } from "@/components/Card";
 
 const TextFadeIn = keyframes`

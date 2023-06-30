@@ -30,18 +30,11 @@ export const routes: Array<Route> = [
     name: "cosplay",
     pathname: "/cosplay",
   },
-  /*
   {
     title: "イベント情報",
     name: "event",
     pathname: "/event",
   },
-  {
-    title: "感染症対策",
-    name: "infection",
-    pathname: "/infection",
-  },
-  */
   {
     title: "スタッフ一覧",
     name: "staff",

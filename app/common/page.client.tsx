@@ -105,7 +105,7 @@ const Page: React.FC = () => {
                 <Tr>
                   <Td>10:30</Td>
                   <Td>
-                    サークル参加総理入場開始
+                    【サークル】参加総理入場開始
                     <br />
                     【更衣室】開場
                   </Td>
@@ -147,7 +147,7 @@ const Page: React.FC = () => {
               「<AnchorLink to="/circle">サークル参加</AnchorLink>
               」ページをご確認ください。
             </Card.Contents>
-            <Card.Contents title="一般の総理の皆さん">
+            <Card.Contents title="一般参加の総理の皆さん">
               前売券を開催当日の00:00まで販売します。
               <br />
               前売券は、LivePocketを利用したデジタルチケットを導入します。
