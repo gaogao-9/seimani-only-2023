@@ -214,6 +214,7 @@ export const ResponsiveImage: React.VFC<ResponsiveImageProps> = ({
       };
     }
   }, [
+    scale,
     canvasSize.w,
     canvasSize.h,
     imageSize.h,
@@ -230,7 +231,11 @@ export const ResponsiveImage: React.VFC<ResponsiveImageProps> = ({
     <Wrapper ref={wrapperRef} width={rectWidth} height={rectHeight}>
       <ImageContainer
         style={{
-          transform: `translate(${translate.x}px, ${translate.y}px) scale(${scale.x}, ${scale.y})`,
+          transform: `translate(${
+            !Number.isNaN(translate.x) ? translate.x : 0
+          }px, ${!Number.isNaN(translate.y) ? translate.y : 0}px) scale(${
+            !Number.isNaN(scale.x) ? scale.x : 0
+          }, ${!Number.isNaN(scale.y) ? scale.y : 0})`,
         }}
       >
         {children}
