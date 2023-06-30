@@ -5,6 +5,7 @@ import Image from "next/image";
 import styled from "@emotion/styled";
 import { keyframes } from "@emotion/react";
 import { ResponsiveImage, isSmallSize } from "@/components/ResponsiveImage";
+import { useTopImageContext } from "@/utils/useTopImageContext";
 
 const isMobileMac = (): boolean => {
   if (typeof window === "undefined") return false;
@@ -19,7 +20,7 @@ const isMobileMac = (): boolean => {
 
 const animationStartDelay = 0.5;
 
-const CharaInAnimation = keyframes`
+const BackgroundInAnimation = keyframes`
   0% {
     transform: translateY(-120%) scale(0.8, 1.2);
   }
@@ -31,28 +32,29 @@ const CharaInAnimation = keyframes`
   }
 `;
 
-const ImageWrapper = styled.div<{ playstate: "running" | "paused" }>`
+const ImageWrapper = styled.div<{
+  width: number;
+  height: number;
+  playstate?: "running" | "paused";
+}>`
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: ${({ width }) => `${width}px`};
+  height: ${({ height }) => `${height}px`};
   transform-origin: center center;
   transform-style: preserve-3d;
   animation-play-state: ${({ playstate = "running" }) => playstate};
 `;
 
-const CharaImageWrapper = styled(ImageWrapper)`
+const BackgroundImageWrapper = styled(ImageWrapper)`
   animation: 0.5s ease ${animationStartDelay + 0.1}s 1 running both
-    ${CharaInAnimation};
+    ${BackgroundInAnimation};
   transform-origin: center bottom;
 `;
 
 const Page: React.FC = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const onCharaImageLoad = useCallback(() => {
-    setIsLoaded(true);
-  }, []);
+  const topImageContext = useTopImageContext();
   const [imageSize, setImageSize] = useState(() => {
     return isMobileMac() || isSmallSize()
       ? ({
@@ -87,6 +89,8 @@ const Page: React.FC = () => {
     };
   }, []);
 
+  if (!topImageContext.loaded) return <></>;
+
   return (
     <>
       <ResponsiveImage
@@ -101,26 +105,18 @@ const Page: React.FC = () => {
         minimumHeightThretholdRate={400 / 100}
         minimumWidthThretholdRate={30 / 100}
       >
-        <CharaImageWrapper
-          style={{
-            width: imageSize.w,
-            height: imageSize.h,
-          }}
-          playstate={isLoaded ? "running" : "paused"}
-        >
+        <BackgroundImageWrapper width={imageSize.w} height={imageSize.h}>
           <Image
             src={
               isMobileMac() || isSmallSize()
-                ? "/assets/img/top/haikei_m.png"
-                : "/assets/img/top/haikei.png"
+                ? topImageContext.images["haikei_m.png"]
+                : topImageContext.images["haikei.png"]
             }
             width={imageSize.w}
             height={imageSize.h}
-            loading="eager"
-            alt="カルチェとジーンのツーショット"
-            onLoad={onCharaImageLoad}
+            alt="背景画像"
           />
-        </CharaImageWrapper>
+        </BackgroundImageWrapper>
       </ResponsiveImage>
     </>
   );
