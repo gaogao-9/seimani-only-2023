@@ -14,13 +14,17 @@ export default function PageLayout({
 }) {
   const topImageContextValue = useTopImageContextValue();
 
-  useEffect(() => {
-    topImageContextValue.init();
+  useEffect(
+    () => {
+      topImageContextValue.init();
 
-    return () => {
-      topImageContextValue.dispose();
-    };
-  }, [topImageContextValue]);
+      return () => {
+        topImageContextValue.dispose();
+      };
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
   return (
     <>
       <Layout>
