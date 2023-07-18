@@ -151,7 +151,7 @@ type LogoWrapperProps = {
 };
 
 const LogoWrapper = styled(ImageWrapper)<LogoWrapperProps>`
-  animation: 0.5s ease ${animationStartDelay + 2.5}s 1 running both
+  animation: 0.5s ease ${animationStartDelay + 2.3}s 1 running both
     ${LogoInAnimation};
 
   & img {
