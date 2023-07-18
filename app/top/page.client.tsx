@@ -79,6 +79,15 @@ const MoveAnimation = keyframes`
   }
 `;
 
+const LogoInAnimation = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+
 const ActorArea = styled.div`
   display: grid;
 
@@ -143,14 +152,14 @@ type LogoWrapperProps = {
 
 const LogoWrapper = styled(ImageWrapper)<LogoWrapperProps>`
   animation: 0.5s ease ${animationStartDelay + 2.5}s 1 running both
-    ${BackgroundInAnimation};
+    ${LogoInAnimation};
 
   & img {
     transform: scale(0.45)
       translate(
         ${({ position, offsetX }) =>
           logoImageSize.w *
-          ((position === "bottom" ? -0.03 : -0.7) + offsetX)}px,
+          ((position === "bottom" ? -0.01 : -0.7) + offsetX)}px,
         ${({ position, offsetY }) =>
           logoImageSize.h * ((position === "bottom" ? 0.6 : -0.25) + offsetY)}px
       );
