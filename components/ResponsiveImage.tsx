@@ -96,6 +96,7 @@ export const ResponsiveImage: React.VFC<ResponsiveImageProps> = ({
   portraitPositionY,
   children,
   onResize,
+  ...props
 }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [canvasSize, setCanvasSize] = useState<Size>({
@@ -228,7 +229,7 @@ export const ResponsiveImage: React.VFC<ResponsiveImageProps> = ({
   ]);
 
   return (
-    <Wrapper ref={wrapperRef} width={rectWidth} height={rectHeight}>
+    <Wrapper ref={wrapperRef} width={rectWidth} height={rectHeight} {...props}>
       <ImageContainer
         style={{
           transform: `translate(${

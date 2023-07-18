@@ -79,16 +79,24 @@ const MoveAnimation = keyframes`
   }
 `;
 
+const ActorArea = styled.div`
+  display: grid;
+
+  [data-grid-area] {
+    grid-area: 1/1;
+  }
+`;
+
 const ImageWrapper = styled.div<{
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
   playstate?: "running" | "paused";
 }>`
   position: absolute;
   top: 0;
   left: 0;
-  width: ${({ width }) => `${width}px`};
-  height: ${({ height }) => `${height}px`};
+  width: ${({ width }) => (width ? `${width}px` : "100%")};
+  height: ${({ height }) => (height ? `${height}px` : "100%")};
   transform-origin: center center;
   transform-style: preserve-3d;
   animation-play-state: ${({ playstate = "running" }) => playstate};
@@ -122,6 +130,33 @@ const EffectImageWrapper = styled(ImageWrapper)`
   transform-origin: center bottom;
 `;
 
+const logoImageSize = {
+  w: 869,
+  h: 604,
+};
+
+type LogoWrapperProps = {
+  position: "bottom" | "right";
+  offsetX: number;
+  offsetY: number;
+};
+
+const LogoWrapper = styled(ImageWrapper)<LogoWrapperProps>`
+  animation: 0.5s ease ${animationStartDelay + 2.5}s 1 running both
+    ${BackgroundInAnimation};
+
+  & img {
+    transform: scale(0.45)
+      translate(
+        ${({ position, offsetX }) =>
+          logoImageSize.w *
+          ((position === "bottom" ? -0.03 : -0.7) + offsetX)}px,
+        ${({ position, offsetY }) =>
+          logoImageSize.h * ((position === "bottom" ? 0.6 : -0.25) + offsetY)}px
+      );
+  }
+`;
+
 const Page: React.FC = () => {
   const topImageContext = useTopImageContext();
   const [imageSize, setImageSize] = useState(() => {
@@ -135,6 +170,39 @@ const Page: React.FC = () => {
           h: 1500,
         } as const);
   });
+  const [logoPosition, setLogoPosition] = useState<"bottom" | "right">(
+    "bottom",
+  );
+  const [[logoOffsetX, logoOffsetY], setLogoOffset] = useState<
+    [number, number]
+  >([0, 0]);
+
+  const onResize = useCallback((canvasSize: { w: number; h: number }) => {
+    const imageRatio = logoImageSize.w / logoImageSize.h;
+    const canvasRatio = canvasSize.w / canvasSize.h;
+    const positionThrethold = 1.5;
+    const rightOffsetThrethold = 3;
+
+    if (canvasRatio <= positionThrethold && canvasRatio >= imageRatio) {
+      const offsetRate =
+        (canvasRatio - imageRatio) / (positionThrethold - imageRatio);
+
+      setLogoOffset([0, offsetRate * -0.18]);
+    }
+
+    if (
+      canvasRatio <= rightOffsetThrethold &&
+      canvasRatio > positionThrethold
+    ) {
+      const offsetRate =
+        (rightOffsetThrethold - canvasRatio) /
+        (rightOffsetThrethold - positionThrethold);
+
+      setLogoOffset([offsetRate * 0.11, offsetRate * 0.09]);
+    }
+
+    setLogoPosition(canvasRatio > positionThrethold ? "right" : "bottom");
+  }, []);
 
   useEffect(() => {
     const resizeObserver = new ResizeObserver((entry) => {
@@ -161,7 +229,7 @@ const Page: React.FC = () => {
   if (!topImageContext.loaded) return <></>;
 
   return (
-    <>
+    <ActorArea>
       <ResponsiveImage
         rectWidth="100%"
         rectHeight={["calc(100vh - 60px)", "calc(100dvh - 60px)"]}
@@ -173,6 +241,7 @@ const Page: React.FC = () => {
         imageHeight={imageSize.h}
         minimumHeightThretholdRate={400 / 100}
         minimumWidthThretholdRate={30 / 100}
+        data-grid-area="character"
       >
         <BackgroundImageWrapper width={imageSize.w} height={imageSize.h}>
           <Image
@@ -195,7 +264,7 @@ const Page: React.FC = () => {
             }
             width={imageSize.w}
             height={imageSize.h}
-            alt="背景画像"
+            alt="カルチェ"
           />
         </CartierImageWrapper>
         <JeaneImageWrapper width={imageSize.w} height={imageSize.h}>
@@ -207,7 +276,7 @@ const Page: React.FC = () => {
             }
             width={imageSize.w}
             height={imageSize.h}
-            alt="背景画像"
+            alt="ジーン"
           />
         </JeaneImageWrapper>
         <EffectImageWrapper width={imageSize.w} height={imageSize.h}>
@@ -219,11 +288,40 @@ const Page: React.FC = () => {
             }
             width={imageSize.w}
             height={imageSize.h}
-            alt="背景画像"
+            alt="エフェクト"
           />
         </EffectImageWrapper>
       </ResponsiveImage>
-    </>
+      <ResponsiveImage
+        rectWidth="100%"
+        rectHeight={["calc(100vh - 60px)", "calc(100dvh - 60px)"]}
+        landscapePositionX="center"
+        landscapePositionY="center"
+        portraitPositionX="center"
+        portraitPositionY="center"
+        imageWidth={logoImageSize.w}
+        imageHeight={logoImageSize.h}
+        minimumHeightThretholdRate={250 / 100}
+        minimumWidthThretholdRate={52 / 100}
+        data-grid-area="logo"
+        onResize={onResize}
+      >
+        <LogoWrapper
+          width={logoImageSize.w}
+          height={logoImageSize.h}
+          position={logoPosition}
+          offsetX={logoOffsetX}
+          offsetY={logoOffsetY}
+        >
+          <Image
+            src={topImageContext.images["logo.png"]}
+            width={logoImageSize.w}
+            height={logoImageSize.h}
+            alt="ロゴ"
+          />
+        </LogoWrapper>
+      </ResponsiveImage>
+    </ActorArea>
   );
 };
 
