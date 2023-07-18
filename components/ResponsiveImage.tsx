@@ -215,7 +215,6 @@ export const ResponsiveImage: React.VFC<ResponsiveImageProps> = ({
       };
     }
   }, [
-    scale,
     canvasSize.w,
     canvasSize.h,
     imageSize.h,

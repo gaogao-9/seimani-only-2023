@@ -20,7 +20,7 @@ export default function PageLayout({
     return () => {
       topImageContextValue.dispose();
     };
-  }, []);
+  }, [topImageContextValue]);
   return (
     <>
       <Layout>
