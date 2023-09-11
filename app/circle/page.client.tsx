@@ -141,8 +141,6 @@ const Page: React.FC = () => {
             </Table>
             <br />
             <br />
-            ※その他詳細スケジュールは後日お知らせします
-            <br />
             ※スケジュールは変更になることがあります
           </StyledCardSection>
           <StyledCardSection delay={0.5} title="サークル参加資格">

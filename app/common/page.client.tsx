@@ -138,8 +138,6 @@ const Page: React.FC = () => {
             </Table>
             <br />
             <br />
-            ※その他詳細スケジュールは後日お知らせします
-            <br />
             ※スケジュールは変更になることがあります
           </StyledCardSection>
           <StyledCardSection delay={0.5} title="参加費">
@@ -177,7 +175,7 @@ const Page: React.FC = () => {
               ※このチケットには特別ログインボーナスが付いておりません※
               <br />
               <br />
-              また、当日券もご用意しております。
+              当日券もご用意しております。
               <br />
               開催当日の00:00からLivePocketにて販売します。
               <br />
