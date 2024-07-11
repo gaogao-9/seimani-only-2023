@@ -8,7 +8,7 @@ export const createHeadMetadata = (pathname: string): Metadata => {
   const subTitle = route?.pathname === "/top" ? "" : route?.title ?? "";
   const fullTitle = subTitle ? `${title} | ${subTitle}` : title;
   const description = `${title}の公式サイトです`;
-  const origin = "https://festia.moe";
+  const origin = "https://only2023.festia.moe";
   const ogpImage = `${origin}/ogp_icon.jpg`;
 
   return {
